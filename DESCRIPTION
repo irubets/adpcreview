@@ -8,7 +8,7 @@ Description: Runs a local Shiny application for pharmacokinetic data review,
     with interactive findings, profile exploration, quality checks, linked
     HTML and Excel reports, and optional language model integrations.
     Source datasets are selected at runtime and are not bundled.
-License: MIT + file LICENSE
+License: file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.3.0)
 Imports:
