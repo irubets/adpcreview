@@ -1,0 +1,23 @@
+name: R package checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - name: Install dependencies
+        run: Rscript -e 'install.packages(c("shiny", "shinyWidgets", "shinyFiles", "DT", "plotly", "ggplot2", "dplyr", "tidyr", "haven", "readr", "openxlsx", "stringr", "purrr", "scales", "httr2", "jsonlite", "htmltools", "PKNCA", "zip", "digest"))'
+      - name: Install package
+        run: R CMD INSTALL .
+      - name: Run synthetic regression tests
+        run: |
+          Rscript -e 'tests <- list.files("tests", pattern="[.]R$", full.names=TRUE); for(test in tests) { message(test); status <- system2(file.path(R.home("bin"),"Rscript"),test); if(status != 0) quit(status=status) }'
+      - name: Build source package
+        run: R CMD build --no-build-vignettes --no-manual .
+      - name: Check source package
+        run: R CMD check --no-manual --no-build-vignettes adpcreview_*.tar.gz

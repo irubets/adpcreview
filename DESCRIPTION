@@ -1,0 +1,38 @@
+Package: adpcreview
+Type: Package
+Title: ADPC and ADNCA Concentration and Parameter Review
+Version: 0.1.0
+Authors@R: c(person("Igor", "Rubets", email = "igor.rubets@gmail.com", role = c("aut", "cre")),
+    person("Marieve", "Dupuis", role = "aut"))
+Description: Runs a local Shiny application for pharmacokinetic data review,
+    with interactive findings, profile exploration, quality checks, linked
+    HTML and Excel reports, and optional language model integrations.
+    Source datasets are selected at runtime and are not bundled.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.3.0)
+Imports:
+    shiny,
+    shinyWidgets,
+    shinyFiles,
+    DT,
+    plotly,
+    ggplot2,
+    dplyr,
+    tidyr,
+    haven,
+    readr,
+    openxlsx,
+    stringr,
+    purrr,
+    scales,
+    httr2,
+    jsonlite,
+    htmltools,
+    PKNCA,
+    zip,
+    digest
+ByteCompile: true
+NeedsCompilation: no
+URL: https://github.com/irubets/adpcreview
+BugReports: https://github.com/irubets/adpcreview/issues

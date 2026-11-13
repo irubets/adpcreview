@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>adpcreview README</title><style>body{margin:0;background:#f5f7fb;color:#25324a;font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}nav{position:fixed;inset:0 auto 0 0;width:260px;padding:28px 24px;overflow:auto;background:#14283f;color:white;box-sizing:border-box}nav strong{font-size:22px}nav a{color:#c7e0f4;text-decoration:none}nav ul{list-style:none;padding-left:13px}nav>ul{padding-left:0}nav li{margin:8px 0;font-size:13px}nav ul ul ul{display:none}main{margin-left:260px;max-width:1060px;padding:40px 55px 80px}h1{font-size:38px;line-height:1.2;color:#14283f}h2{margin-top:2.4em;border-top:1px solid #dbe2ec;padding-top:24px;color:#135f7a;scroll-margin-top:20px}h3{margin-top:1.8em;scroll-margin-top:20px}a{color:#086c8f}pre{background:#14283f;color:#e4f1fc;padding:18px;border-radius:8px;overflow:auto;font-size:14px}code{font-family:Consolas,monospace;overflow-wrap:anywhere}p code,li code,td code{background:#eaf0f6;padding:2px 4px;border-radius:3px}table{width:100%;border-collapse:collapse;background:white;font-size:14px;margin:18px 0;display:block;overflow:auto}th,td{padding:11px 13px;border:1px solid #dbe2ec;vertical-align:top;min-width:110px}th{background:#e7f1f6;text-align:left}tr:nth-child(even){background:#f6f8fb}img{display:block;width:100%;height:auto;border:1px solid #cbd7e3;border-radius:7px;margin:24px 0 8px}blockquote{margin:18px 0;padding:12px 20px;background:#e8f5f4;border-left:4px solid #16887e}.subtitle{font-size:13px;color:#7c8fa2}footer{margin-top:55px;border-top:1px solid #ccd6e3;padding-top:16px;color:#68798b;font-size:13px}@media(max-width:980px){nav{position:static;width:auto;max-height:280px}main{margin:0;padding:24px}h1{font-size:30px}}@media print{nav{display:none}main{margin:0;max-width:none;padding:0}body{background:white;font-size:11pt}pre{white-space:pre-wrap;background:#eee;color:#111}h2,h3{break-after:avoid}img,tr{break-inside:avoid}a{color:inherit}table{display:table;font-size:9pt}}</style></head><body><nav><strong>adpcreview</strong><p class="subtitle">User documentation · 0.1.0</p><div class="toc">
+<ul>
+<li><a href="#first-time-installation">First-time installation</a><ul>
+<li><a href="#install-from-github">Install from GitHub</a></li>
+</ul>
+</li>
+<li><a href="#launch-and-use">Launch and use</a></li>
+<li><a href="#documentation-after-installation">Documentation after installation</a></li>
+<li><a href="#optional-ai">Optional AI</a></li>
+<li><a href="#data-handling-and-output">Data handling and output</a></li>
+<li><a href="#for-developers">For developers</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+</div>
+</nav><main><h1 id="adpcreview">adpcreview</h1>
+<p>Review ADPC/ADNCA concentration-time data or parameter-level NCA records such as PARAMCD/AVAL. The package runs a local Shiny app with linked findings, interactive plots, source-file provenance and complete HTML/Excel review exports. Version <strong>0.1.0</strong>.</p>
+<p>Read the <a href="USERGUIDE.html">User Guide (HTML)</a> or <a href="USERGUIDE.md">User Guide (Markdown)</a> for every Setup section, tab, workflow and output.</p>
+<h2 id="first-time-installation">First-time installation</h2>
+<h3 id="install-from-github">Install from GitHub</h3>
+<p>The public source repository is <a href="https://github.com/irubets/adpcreview">irubets/adpcreview</a>. Install directly from GitHub:</p>
+<pre><code class="language-r">install.packages(&quot;remotes&quot;, repos = &quot;https://cloud.r-project.org&quot;)
+remotes::install_github(&quot;irubets/adpcreview&quot;, dependencies = TRUE, upgrade = &quot;never&quot;)
+adpcreview::run_app()
+</code></pre>
+<p>Alternatively, download the supplied <a href="https://github.com/irubets/adpcreview/raw/refs/heads/main/dist/adpcreview_0.1.0.tar.gz">adpcreview_0.1.0.tar.gz</a> source archive and follow the archive-installation steps below. Neither method requires a developer-machine folder.</p>
+<p>Install R 4.3 or later and obtain <strong><code>adpcreview_0.1.0.tar.gz</code></strong> (or the current supplied version) from the maintainer. RStudio is optional. These instructions use the supplied archive and do not depend on the developer’s computer, repository folder or a CRAN listing for this app.</p>
+<p>Install dependencies:</p>
+<pre><code class="language-r">install.packages(c(
+  &quot;shiny&quot;, &quot;shinyWidgets&quot;, &quot;shinyFiles&quot;, &quot;DT&quot;, &quot;plotly&quot;, &quot;ggplot2&quot;,
+  &quot;dplyr&quot;, &quot;tidyr&quot;, &quot;haven&quot;, &quot;readr&quot;, &quot;openxlsx&quot;, &quot;stringr&quot;, &quot;purrr&quot;,
+  &quot;scales&quot;, &quot;httr2&quot;, &quot;jsonlite&quot;, &quot;htmltools&quot;, &quot;PKNCA&quot;, &quot;zip&quot;, &quot;digest&quot;
+), repos = &quot;https://cloud.r-project.org&quot;)
+</code></pre>
+<p>Install the app archive without extracting it:</p>
+<pre><code class="language-r">install.packages(file.choose(), repos = NULL, type = &quot;source&quot;)
+# Select adpcreview_0.1.0.tar.gz.
+</code></pre>
+<p>Alternatively, if the archive is in your current working directory:</p>
+<pre><code class="language-r">install.packages(&quot;adpcreview_0.1.0.tar.gz&quot;, repos = NULL, type = &quot;source&quot;)
+</code></pre>
+<p>Local source installs require dependencies to be installed first. The package has no native C/C++ compilation step; dependencies built from source may need system build tools. Restart R before updating a loaded package.</p>
+<h2 id="launch-and-use">Launch and use</h2>
+<pre><code class="language-r">adpcreview::run_app()
+</code></pre>
+<p>Keep R running. Use the local address printed by Shiny if the browser does not open. Stop with Esc/Stop in RStudio or Ctrl+C in a terminal. Run simultaneous apps in separate R sessions.</p>
+<ol>
+<li>Load the local dataset from Setup.</li>
+<li>Choose concentration-time or NCA-parameter review and confirm the applicable mappings/key.</li>
+<li>Choose the population and thresholds, then click <strong>Run review</strong>.</li>
+<li>Inspect counts, source identity and linked complete-context findings.</li>
+<li>Save the complete HTML ZIP and/or Excel review. Dedicated PK-profile and NCA tools use their own scopes and action buttons.</li>
+</ol>
+<p>Supported inputs are XPT, SAS7BDAT, CSV, RDS, RDA and RData containing a reviewable data frame. Study data are selected at runtime; none are distributed with the package. Parameter mode provides inventory/listings and consistency screens; it does not recalculate NCA from parameter rows.</p>
+<h2 id="documentation-after-installation">Documentation after installation</h2>
+<pre><code class="language-r">browseURL(system.file(&quot;docs&quot;, &quot;USERGUIDE.html&quot;, package = &quot;adpcreview&quot;, mustWork = TRUE))
+help(&quot;run_app&quot;, package = &quot;adpcreview&quot;)
+</code></pre>
+<p>The HTML guide is self-contained, including screenshots, and works offline. Markdown uses the accompanying guide-assets folder. Reports and separate NCA exports have different purposes; see the guide before sharing outputs.</p>
+<h2 id="optional-ai">Optional AI</h2>
+<p>Core review does not need an AI account. OpenAI and Anthropic are optional hosted providers; local Qwen uses Ollama. Configure only intended providers in your user .Renviron, restart R, confirm data scope and blind data appropriately. The <a href="USERGUIDE.md#ai-assistant-optional-help-with-explicit-data-scope">guide</a> covers configuration, query access and approval of generated visualization code. No provider availability or model subscription is implied.</p>
+<h2 id="data-handling-and-output">Data handling and output</h2>
+<p>Source values are preserved; findings are screening candidates, not automatic corrections or clinical adjudications. Input file SHA256 identifies file bytes. Reports can contain selected source records and need the same protection as input data. Generated visualizations default to a writable per-user data directory; override with <code>run_app(output_dir = "my-visualizations")</code>. Keep credentials and clinical data out of package distributions.</p>
+<h2 id="for-developers">For developers</h2>
+<p>Canonical app scripts are in <code>inst/app/</code>; root R scripts are compatibility entry points. <code>shiny::runApp(".")</code> still works from a source checkout. Public package entry points are <code>create_app()</code> and <code>run_app()</code>. Edit root USERGUIDE.md / README.md and run <code>python tools/render-docs.py</code> to refresh self-contained HTML and synchronize installed documentation (developer tool: Python with the markdown package). Run installed-package smoke tests with <code>Rscript tests/package-smoke.R</code>; public synthetic regression scripts are <code>tests/test_*.R</code>; additional development tests that require local study fixtures are not included in the public snapshot. Source package builds deliberately omit fixtures, clinical data, reports and development artifacts. Build with <code>R CMD build .</code>; check the resulting archive with <code>R CMD check --no-manual &lt;archive.tar.gz&gt;</code>. The guide describes 0.1.0; hosted CI and clinical validation are separate from documentation verification.</p>
+<h2 id="license">License</h2>
+<p>Released under the <a href="LICENSE.md">MIT License</a>. Copyright 2026 Igor Rubets and Marieve Dupuis.</p><footer>Documentation version 0.1.0 · November 12, 2026 · Screenshots show synthetic data.</footer></main></body></html>
